@@ -1,0 +1,40 @@
+{
+  "name": "grunt-extract-cldr-data",
+  "version": "0.0.0",
+  "description": "Extract CLDR data and transform it for use in JavaScript.",
+  "author": "Eric Ferraiuolo <edf@ericf.me>",
+  "keywords": [
+    "gruntplugin",
+    "cldr",
+    "data",
+    "i18n",
+    "intl",
+    "internationalization",
+    "locale",
+    "locales",
+    "localization"
+  ],
+  "main": "Gruntfile.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "license": "BSD",
+  "dependencies": {
+    "cldr": "^2.3.0",
+    "serialize-javascript": "^1.0.0"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-nodeunit": "^0.4.1",
+    "jshint-stylish": "^0.4.0",
+    "load-grunt-tasks": "^0.6.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "directories": {
+    "test": "test"
+  }
+}
