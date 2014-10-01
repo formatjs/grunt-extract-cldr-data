@@ -20,7 +20,7 @@
   },
   "license": "BSD",
   "dependencies": {
-    "cldr": "^2.3.0",
+    "cldr": "^2.3.1",
     "serialize-javascript": "^1.0.0"
   },
   "devDependencies": {
@@ -28,7 +28,7 @@
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-contrib-nodeunit": "^0.4.1",
-    "jshint-stylish": "^0.4.0",
+    "jshint-stylish": "^1.0.0",
     "load-grunt-tasks": "^0.6.0"
   },
   "scripts": {
