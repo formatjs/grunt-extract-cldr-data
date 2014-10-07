@@ -20,7 +20,7 @@
   },
   "license": "BSD",
   "dependencies": {
-    "cldr": "^2.3.1",
+    "cldr": "2.3.2",
     "serialize-javascript": "^1.0.0"
   },
   "devDependencies": {
