@@ -37,8 +37,8 @@ module.exports = function (grunt) {
         dest: 'tmp/',
         options: {
           locales: ['en'],
-          fields : ['year', 'month', 'day', 'hour', 'minute', 'second'],
-          plurals: true,
+          pluralRules: true,
+          relativeFields: true,
 
           wrapEntry: function (serialized) {
             return 'IntlRelativeFormat.__addLocaleData(' + serialized + ');';
@@ -49,7 +49,7 @@ module.exports = function (grunt) {
       all: {
         dest: 'tmp/locales.js',
         options: {
-          plurals: true,
+          pluralRules: true,
 
           prelude: [
             '// GENERATED FILE',
