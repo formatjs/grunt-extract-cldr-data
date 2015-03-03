@@ -3,6 +3,7 @@
 > Extract CLDR data and transform it for use in JavaScript. This a Grunt plugin for the [formatjs-extract-cldr-data][].
 
 [![npm Version][npm-badge]][npm]
+[![Build Status][travis-badge]][travis]
 [![Dependency Status][david-badge]][david]
 
 ## Getting Started
@@ -142,6 +143,8 @@ See the [LICENSE file][LICENSE] for license text and copyright information.
 [formatjs-extract-cldr-data]: https://github.com/yahoo/formatjs-extract-cldr-data
 [npm]: https://www.npmjs.org/package/grunt-extract-cldr-data
 [npm-badge]: https://img.shields.io/npm/v/grunt-extract-cldr-data.svg?style=flat-square
+[travis]: https://travis-ci.org/yahoo/grunt-extract-cldr-data
+[travis-badge]: https://img.shields.io/travis/yahoo/grunt-extract-cldr-data.svg?style=flat-square
 [david]: https://david-dm.org/yahoo/grunt-extract-cldr-data
 [david-badge]: https://img.shields.io/david/yahoo/grunt-extract-cldr-data.svg?style=flat-square
 [LICENSE]: https://github.com/yahoo/grunt-extract-cldr-data/blob/master/LICENSE
