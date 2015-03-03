@@ -12,48 +12,22 @@ module.exports = function (grunt) {
 
   grunt.registerMultiTask('extract_cldr_data', 'Extract CLDR data and transform it for use in JavaScript.', function () {
 
-    var path      = require('path');
-    var serialize = require('serialize-javascript');
-
-    var extract = require('../lib/extract');
+    var extractData = require('formatjs-extract-cldr-data');
+    var path        = require('path');
+    var serialize   = require('serialize-javascript');
 
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
-      locales: extract.rootLocales(),
-      plurals: false,
-      fields : false,
-      prelude: ''
+      locales       : undefined,
+      pluralRules   : false,
+      relativeFields: false,
+      prelude       : '',
+      wrapEntry     : undefined,
     });
 
+    var data      = extractData(options);
     var dest      = this.data.dest;
     var destIsDir = path.extname(dest) === '';
-
-    var entries = options.locales.map(function (locale) {
-      var data = {locale: locale};
-
-      if (options.plurals) {
-        var pluralRuleFunction = extract.pluralRuleFunction(locale);
-        if (pluralRuleFunction) {
-          data.pluralRuleFunction = pluralRuleFunction;
-        } else {
-          return null;
-        }
-      }
-
-      if (options.fields) {
-        var fields = extract.fields(locale, options.fields);
-        if (fields && Object.keys(fields).length) {
-          data.fields = fields;
-        } else {
-          return null;
-        }
-      }
-
-      return data;
-    }).filter(function (localeData) {
-      // Make sure there is data for the given locale.
-      return !!localeData;
-    });
 
     function serializeEntry(entry) {
       var serialized = serialize(entry);
@@ -65,17 +39,30 @@ module.exports = function (grunt) {
       return serialized;
     }
 
+    // We want one output file per language (e.g., "en.js"), so this aggregates
+    // locale data for each language into a single file.
+    var files = Object.keys(data).reduce(function (files, locale) {
+      var lang = locale.split('-')[0];
+      files[lang] = (files[lang] || '') + serializeEntry(data[locale]) + '\n';
+      return files;
+    }, {});
+
     if (destIsDir) {
-      entries.forEach(function (entry) {
-        var entryDest = path.join(dest, entry.locale + '.js');
-        var file      = options.prelude + serializeEntry(entry);
+      Object.keys(files).forEach(function (lang) {
+        var entryDest = path.join(dest, lang + '.js');
+        var file      = options.prelude + files[lang];
 
         grunt.file.write(entryDest, file, {encoding: 'utf8'});
       });
 
-      grunt.log.ok(entries.length + ' locale files written to: ' + dest);
+      grunt.log.ok(files.length + ' locale data files written to: ' + dest);
     } else {
-      var file = options.prelude + entries.map(serializeEntry).join('\n');
+      var file = options.prelude;
+
+      file += Object.keys(files).reduce(function (file, lang) {
+        return file + files[lang];
+      }, '');
+
       grunt.file.write(dest, file, {encoding: 'utf8'});
       grunt.log.ok('wrote locale data to: ' + dest);
     }

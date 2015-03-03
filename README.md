@@ -1,6 +1,6 @@
 # grunt-extract-cldr-data
 
-> Extract CLDR data and transform it for use in JavaScript.
+> Extract CLDR data and transform it for use in JavaScript. This a Grunt plugin for the [formatjs-extract-cldr-data][].
 
 [![npm Version][npm-badge]][npm]
 [![Dependency Status][david-badge]][david]
@@ -46,21 +46,21 @@ Each target must supply a `dest` property for the file path where the generated 
 
 #### options.locales
 Type: `Array`
-Default value: CLDR root locales; e.g., `['en', 'fr', ...]`
+Default value: All CLDR locales
 
-An array of strings for the root locales to extract data for.
+An array of language tag strings strings for the locales to extract data for; e.g., `['en', 'fr', 'zh-Hant-HK', ...]`
 
-#### options.plurals
+#### options.pluralRules
 Type: `Boolean`
 Default value: `false`
 
 Whether or not the `pluralRuleFunction` CLDR data should be extracted for each of the given `locales`.
 
-#### options.fields
-Type: `Boolean|Array`
+#### options.relativeFields
+Type: `Boolean`
 Default value: `false`
 
-Whether or not the `fields` CLDR data should be extracted for each of the given `locales`. An array of string field names can be specified to only extract data for those fields; e.g., `['year', 'month', 'day', 'hour', 'minute', 'second']`.
+Whether or not the relative-time `fields` CLDR data should be extracted for each of the given `locales`.
 
 #### options.prelude
 Type: `String`
@@ -76,8 +76,8 @@ A function that will be passed a string of serialized data for each each `option
 
 ### Usage Examples
 
-#### Extract Plural Functions
-In this example, the CLDR plural functions for all of the root locales will be extracted and output into a single file which wraps each locale's data in a function call:
+#### Extract Plural Rule Functions
+In this example, the CLDR plural rule functions for all locales will be extracted and output into a single file which wraps each locale's data in a function call:
 
 ```js
 grunt.initConfig({
@@ -85,7 +85,7 @@ grunt.initConfig({
     all: {
       dest: 'locale-data/locales.js',
       options: {
-        plurals: true,
+        pluralRules: true,
 
         prelude: [
           '// GENERATED FILE',
@@ -101,8 +101,8 @@ grunt.initConfig({
 })
 ```
 
-#### Extract Fields and Plural Functions
-In this example, the field CLDR fields and plural functions for just English and French will be extracted and output into a one file per locale. Both of the locale's data is also wrapped in a function call:
+#### Extract Fields and Plural Rule Functions
+In this example, CLDR relative-time fields and plural rule functions for just English and French will be extracted and output into a one file per locale. Both of the locale's data is also wrapped in a function call:
 
 ```js
 grunt.initConfig({
@@ -110,9 +110,9 @@ grunt.initConfig({
     en_and_fr: {
       dest: 'locale-data/',
       options: {
-        locales: ['en', 'fr'],
-        fields : ['year', 'month', 'day', 'hour', 'minute', 'second'],
-        plurals: true,
+        locales       : ['en-US', 'fr-FR'],
+        pluralRules   : true,
+        relativeFields: true,
 
         wrapEntry: function (serialized) {
           return 'IntlRelativeFormat.__addLocaleData(' + serialized + ');';
@@ -123,17 +123,23 @@ grunt.initConfig({
 })
 ```
 
+**Note:** The `locale-data/` directory will contain two files: `en.js`, and `fr.js`. This is because the hierarchy in the language tags is leveraged to de-duplicate data at the language level.
+
 ## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
+In lieu of a formal style guide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
 - `1.0.0`: Initial release.
+- `1.0.1`: Update cldr package to fix issue with plural rule functions.
+- `1.1.0`: Update and lock-down cldr package to latest.
+- `2.0.0`: Refactored to use [formatjs-extract-cldr-data][].
 
 ## License
 This software is free to use under the Yahoo! Inc. BSD license.
 See the [LICENSE file][LICENSE] for license text and copyright information.
 
 
+[formatjs-extract-cldr-data]: https://github.com/yahoo/formatjs-extract-cldr-data
 [npm]: https://www.npmjs.org/package/grunt-extract-cldr-data
 [npm-badge]: https://img.shields.io/npm/v/grunt-extract-cldr-data.svg?style=flat-square
 [david]: https://david-dm.org/yahoo/grunt-extract-cldr-data
