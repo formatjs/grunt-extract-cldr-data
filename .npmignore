@@ -1,3 +1,5 @@
 node_modules/
+test/
 tmp/
+Gruntfile.js
 npm-debug.log
