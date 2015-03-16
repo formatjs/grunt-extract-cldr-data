@@ -145,7 +145,7 @@ See the [LICENSE file][LICENSE] for license text and copyright information.
 [npm]: https://www.npmjs.org/package/grunt-extract-cldr-data
 [npm-badge]: https://img.shields.io/npm/v/grunt-extract-cldr-data.svg?style=flat-square
 [travis]: https://travis-ci.org/yahoo/grunt-extract-cldr-data
-[travis-badge]: https://img.shields.io/travis/yahoo/grunt-extract-cldr-data.svg?style=flat-square
+[travis-badge]: https://img.shields.io/travis/yahoo/grunt-extract-cldr-data/master.svg?style=flat-square
 [david]: https://david-dm.org/yahoo/grunt-extract-cldr-data
 [david-badge]: https://img.shields.io/david/yahoo/grunt-extract-cldr-data.svg?style=flat-square
 [LICENSE]: https://github.com/yahoo/grunt-extract-cldr-data/blob/master/LICENSE
