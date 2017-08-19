@@ -1,6 +1,6 @@
 {
   "name": "grunt-extract-cldr-data",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "Extract CLDR data and transform it for use in JavaScript.",
   "author": "Eric Ferraiuolo <edf@ericf.me>",
   "keywords": [
