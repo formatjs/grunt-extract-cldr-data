@@ -137,6 +137,7 @@ In lieu of a formal style guide, take care to maintain the existing coding style
 - `2.1.0`: Upgrade to `formatjs-extract-cldr-data@v1.1.0`.
 - `3.0.0`: Upgrade to `formatjs-extract-cldr-data@v2.0.0`.
 - `4.0.0`: Upgrade to `formatjs-extract-cldr-data@v4.0.0`.
+- `4.1.0`: Upgrade to `formatjs-extract-cldr-data@v4.1.0`.
 
 ## License
 This software is free to use under the Yahoo! Inc. BSD license.
