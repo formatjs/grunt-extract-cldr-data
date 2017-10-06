@@ -20,7 +20,7 @@
   },
   "license": "BSD",
   "dependencies": {
-    "formatjs-extract-cldr-data": "^4.0.0",
+    "formatjs-extract-cldr-data": "^4.1.0",
     "serialize-javascript": "^1.0.0"
   },
   "devDependencies": {
